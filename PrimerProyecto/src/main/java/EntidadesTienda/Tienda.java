@@ -22,4 +22,5 @@ public class Tienda {
     private ArrayList<Empleado> listaEmpleados;
     
     
+    
 }
