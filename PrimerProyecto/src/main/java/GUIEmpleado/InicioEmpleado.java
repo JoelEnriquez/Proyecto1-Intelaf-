@@ -41,13 +41,16 @@ public class InicioEmpleado extends javax.swing.JFrame {
         panelCentralUp = new javax.swing.JPanel();
         panelCentralDown = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
-        cargaDatosButton1 = new javax.swing.JButton();
+        cargaDatosButton = new javax.swing.JButton();
         panelCentralCenter = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        cargaDatosButton = new javax.swing.JButton();
         cargaDatosButton2 = new javax.swing.JButton();
         cargaDatosButton3 = new javax.swing.JButton();
+        cargaDatosButton4 = new javax.swing.JButton();
+        cargaDatosButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         labelFondoEmpleado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,14 +102,14 @@ public class InicioEmpleado extends javax.swing.JFrame {
         });
         panelCentralDown.add(backButton, java.awt.BorderLayout.LINE_END);
 
-        cargaDatosButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cargaDatosButton1.setText("Ventas");
-        cargaDatosButton1.addActionListener(new java.awt.event.ActionListener() {
+        cargaDatosButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        cargaDatosButton.setText("Carga Datos");
+        cargaDatosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargaDatosButton1ActionPerformed(evt);
+                cargaDatosButtonActionPerformed(evt);
             }
         });
-        panelCentralDown.add(cargaDatosButton1, java.awt.BorderLayout.LINE_START);
+        panelCentralDown.add(cargaDatosButton, java.awt.BorderLayout.LINE_START);
 
         panelCentral.add(panelCentralDown, java.awt.BorderLayout.SOUTH);
 
@@ -114,7 +117,7 @@ public class InicioEmpleado extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton1.setText("Tienda");
-        panelCentralCenter.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 140, 60));
+        panelCentralCenter.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 140, 60));
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton2.setText("Tiempo entre Tiendas");
@@ -123,25 +126,16 @@ public class InicioEmpleado extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        panelCentralCenter.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 230, 60));
-
-        cargaDatosButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cargaDatosButton.setText("Carga Datos");
-        cargaDatosButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargaDatosButtonActionPerformed(evt);
-            }
-        });
-        panelCentralCenter.add(cargaDatosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 160, 60));
+        panelCentralCenter.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 230, 60));
 
         cargaDatosButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cargaDatosButton2.setText("Usuarios");
+        cargaDatosButton2.setText("Producto");
         cargaDatosButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargaDatosButton2ActionPerformed(evt);
             }
         });
-        panelCentralCenter.add(cargaDatosButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 160, 60));
+        panelCentralCenter.add(cargaDatosButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 160, 60));
 
         cargaDatosButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         cargaDatosButton3.setText("Pedidos");
@@ -150,7 +144,36 @@ public class InicioEmpleado extends javax.swing.JFrame {
                 cargaDatosButton3ActionPerformed(evt);
             }
         });
-        panelCentralCenter.add(cargaDatosButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 160, 60));
+        panelCentralCenter.add(cargaDatosButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, 160, 60));
+
+        cargaDatosButton4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cargaDatosButton4.setText("Usuarios");
+        cargaDatosButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargaDatosButton4ActionPerformed(evt);
+            }
+        });
+        panelCentralCenter.add(cargaDatosButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 160, 60));
+
+        cargaDatosButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        cargaDatosButton1.setText("Ventas");
+        cargaDatosButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargaDatosButton1ActionPerformed(evt);
+            }
+        });
+        panelCentralCenter.add(cargaDatosButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 160, 60));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Crear o modificar datos");
+        panelCentralCenter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 350, 30));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Compras");
+        panelCentralCenter.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 160, -1));
 
         labelFondoEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFondoEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/centro_comercial.jpg"))); // NOI18N
@@ -191,6 +214,10 @@ public class InicioEmpleado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cargaDatosButton3ActionPerformed
 
+    private void cargaDatosButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaDatosButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cargaDatosButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -198,8 +225,11 @@ public class InicioEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton cargaDatosButton1;
     private javax.swing.JButton cargaDatosButton2;
     private javax.swing.JButton cargaDatosButton3;
+    private javax.swing.JButton cargaDatosButton4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelFondoEmpleado;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblTetoTienda;
