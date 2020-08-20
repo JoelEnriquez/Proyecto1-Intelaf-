@@ -40,6 +40,10 @@ public class AnalizadorInputFile {
         } catch (IOException e) {
             e.getMessage();
         }
+        
+        for (int i = 0; i < filaDescartada.size(); i++) {
+            System.out.println(filaDescartada.get(i));
+        }
     }
 
     /**
@@ -270,5 +274,13 @@ public class AnalizadorInputFile {
             }
         }
         return true;
+    }
+
+    public ArrayList<String> getFilaAceptada() {
+        return filaAceptada;
+    }
+
+    public ArrayList<String> getFilaDescartada() {
+        return filaDescartada;
     }
 }

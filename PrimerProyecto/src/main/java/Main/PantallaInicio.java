@@ -5,6 +5,9 @@
  */
 package Main;
 
+import GUICliente.InicioCliente;
+import GUIEmpleado.InicioEmpleado;
+
 /**
  *
  * @author joel
@@ -25,55 +28,75 @@ public class PantallaInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        vClientesButton = new javax.swing.JButton();
+        vEmpleadosButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
+        fondoInicio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(600, 600));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("INTELAF");
+        vClientesButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        vClientesButton.setText("Version Clientes");
+        vClientesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vClientesButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(vClientesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, 51));
 
-        jButton1.setText("jButton1");
+        vEmpleadosButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        vEmpleadosButton.setText("Version Empleados");
+        vEmpleadosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vEmpleadosButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(vEmpleadosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, -1, 51));
 
-        jButton2.setText("jButton2");
+        closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/puerta (1).png"))); // NOI18N
+        closeButton.setToolTipText("SALIR");
+        closeButton.setContentAreaFilled(false);
+        closeButton.setPreferredSize(new java.awt.Dimension(100, 100));
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(closeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 500, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(143, 143, 143)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(164, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
-        );
+        fondoInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Intelaf_Fisico (1).jpg"))); // NOI18N
+        getContentPane().add(fondoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        System.exit(0);
+        this.dispose();
+    }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void vEmpleadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vEmpleadosButtonActionPerformed
+        InicioEmpleado inicioE = new InicioEmpleado(this);
+        inicioE.setVisible(true);
+        inicioE.setLocationRelativeTo(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_vEmpleadosButtonActionPerformed
+
+    private void vClientesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vClientesButtonActionPerformed
+        InicioCliente inicioC = new InicioCliente(this);
+        inicioC.setVisible(true);
+        inicioC.setLocationRelativeTo(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_vClientesButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton closeButton;
+    private javax.swing.JLabel fondoInicio;
+    private javax.swing.JButton vClientesButton;
+    private javax.swing.JButton vEmpleadosButton;
     // End of variables declaration//GEN-END:variables
 }
