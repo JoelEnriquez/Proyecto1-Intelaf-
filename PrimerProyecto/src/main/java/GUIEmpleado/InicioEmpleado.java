@@ -34,23 +34,23 @@ public class InicioEmpleado extends javax.swing.JFrame {
     private void initComponents() {
 
         panelSuperior = new javax.swing.JPanel();
-        lblFecha = new javax.swing.JLabel();
-        lblTextoNombreyCodigo = new javax.swing.JLabel();
-        lblTetoTienda = new javax.swing.JLabel();
+        txtFechaActual = new javax.swing.JLabel();
+        txtNombreTienda = new javax.swing.JLabel();
+        txtTienda = new javax.swing.JLabel();
         panelCentral = new javax.swing.JPanel();
         panelCentralUp = new javax.swing.JPanel();
         panelCentralDown = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
         cargaDatosButton = new javax.swing.JButton();
         panelCentralCenter = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        cargaDatosButton2 = new javax.swing.JButton();
-        cargaDatosButton3 = new javax.swing.JButton();
-        cargaDatosButton4 = new javax.swing.JButton();
-        cargaDatosButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        tiendaButton = new javax.swing.JButton();
+        tiempoTiendasButton = new javax.swing.JButton();
+        productoButton = new javax.swing.JButton();
+        pedidosButton = new javax.swing.JButton();
+        usuariosButton = new javax.swing.JButton();
+        ventasButton = new javax.swing.JButton();
+        txtCrearModificar = new javax.swing.JLabel();
+        txtCompras = new javax.swing.JLabel();
         labelFondoEmpleado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,20 +58,20 @@ public class InicioEmpleado extends javax.swing.JFrame {
 
         panelSuperior.setLayout(new java.awt.BorderLayout());
 
-        lblFecha.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFecha.setText("Fecha Actual");
-        panelSuperior.add(lblFecha, java.awt.BorderLayout.EAST);
+        txtFechaActual.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        txtFechaActual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtFechaActual.setText("Fecha Actual");
+        panelSuperior.add(txtFechaActual, java.awt.BorderLayout.EAST);
 
-        lblTextoNombreyCodigo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblTextoNombreyCodigo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTextoNombreyCodigo.setText("Nombre_Tienda");
-        panelSuperior.add(lblTextoNombreyCodigo, java.awt.BorderLayout.CENTER);
+        txtNombreTienda.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        txtNombreTienda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtNombreTienda.setText("Nombre_Tienda");
+        panelSuperior.add(txtNombreTienda, java.awt.BorderLayout.CENTER);
 
-        lblTetoTienda.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        lblTetoTienda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblTetoTienda.setText("Tienda:");
-        panelSuperior.add(lblTetoTienda, java.awt.BorderLayout.WEST);
+        txtTienda.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        txtTienda.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtTienda.setText("Tienda:");
+        panelSuperior.add(txtTienda, java.awt.BorderLayout.WEST);
 
         getContentPane().add(panelSuperior, java.awt.BorderLayout.NORTH);
 
@@ -115,65 +115,70 @@ public class InicioEmpleado extends javax.swing.JFrame {
 
         panelCentralCenter.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setText("Tienda");
-        panelCentralCenter.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 140, 60));
-
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton2.setText("Tiempo entre Tiendas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        tiendaButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        tiendaButton.setText("Tienda");
+        tiendaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                tiendaButtonActionPerformed(evt);
             }
         });
-        panelCentralCenter.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 230, 60));
+        panelCentralCenter.add(tiendaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 140, 60));
 
-        cargaDatosButton2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cargaDatosButton2.setText("Producto");
-        cargaDatosButton2.addActionListener(new java.awt.event.ActionListener() {
+        tiempoTiendasButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        tiempoTiendasButton.setText("Tiempo entre Tiendas");
+        tiempoTiendasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargaDatosButton2ActionPerformed(evt);
+                tiempoTiendasButtonActionPerformed(evt);
             }
         });
-        panelCentralCenter.add(cargaDatosButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 160, 60));
+        panelCentralCenter.add(tiempoTiendasButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 230, 60));
 
-        cargaDatosButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cargaDatosButton3.setText("Pedidos");
-        cargaDatosButton3.addActionListener(new java.awt.event.ActionListener() {
+        productoButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        productoButton.setText("Producto");
+        productoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargaDatosButton3ActionPerformed(evt);
+                productoButtonActionPerformed(evt);
             }
         });
-        panelCentralCenter.add(cargaDatosButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, 160, 60));
+        panelCentralCenter.add(productoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 160, 60));
 
-        cargaDatosButton4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cargaDatosButton4.setText("Usuarios");
-        cargaDatosButton4.addActionListener(new java.awt.event.ActionListener() {
+        pedidosButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        pedidosButton.setText("Pedidos");
+        pedidosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargaDatosButton4ActionPerformed(evt);
+                pedidosButtonActionPerformed(evt);
             }
         });
-        panelCentralCenter.add(cargaDatosButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 160, 60));
+        panelCentralCenter.add(pedidosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, 160, 60));
 
-        cargaDatosButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        cargaDatosButton1.setText("Ventas");
-        cargaDatosButton1.addActionListener(new java.awt.event.ActionListener() {
+        usuariosButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        usuariosButton.setText("Usuarios");
+        usuariosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargaDatosButton1ActionPerformed(evt);
+                usuariosButtonActionPerformed(evt);
             }
         });
-        panelCentralCenter.add(cargaDatosButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 160, 60));
+        panelCentralCenter.add(usuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 160, 60));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Crear o modificar datos");
-        panelCentralCenter.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 350, 30));
+        ventasButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        ventasButton.setText("Ventas");
+        ventasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ventasButtonActionPerformed(evt);
+            }
+        });
+        panelCentralCenter.add(ventasButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 160, 60));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Compras");
-        panelCentralCenter.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 160, -1));
+        txtCrearModificar.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        txtCrearModificar.setForeground(new java.awt.Color(0, 0, 0));
+        txtCrearModificar.setText("Crear o modificar datos");
+        panelCentralCenter.add(txtCrearModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 350, 30));
+
+        txtCompras.setFont(new java.awt.Font("Dialog", 1, 30)); // NOI18N
+        txtCompras.setForeground(new java.awt.Color(0, 0, 0));
+        txtCompras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtCompras.setText("Compras");
+        panelCentralCenter.add(txtCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 160, -1));
 
         labelFondoEmpleado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFondoEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/centro_comercial.jpg"))); // NOI18N
@@ -198,46 +203,53 @@ public class InicioEmpleado extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_cargaDatosButtonActionPerformed
 
-    private void cargaDatosButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaDatosButton1ActionPerformed
+    private void ventasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventasButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cargaDatosButton1ActionPerformed
+    }//GEN-LAST:event_ventasButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void tiempoTiendasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoTiendasButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_tiempoTiendasButtonActionPerformed
 
-    private void cargaDatosButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaDatosButton2ActionPerformed
+    private void productoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cargaDatosButton2ActionPerformed
+    }//GEN-LAST:event_productoButtonActionPerformed
 
-    private void cargaDatosButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaDatosButton3ActionPerformed
+    private void pedidosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cargaDatosButton3ActionPerformed
+    }//GEN-LAST:event_pedidosButtonActionPerformed
 
-    private void cargaDatosButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaDatosButton4ActionPerformed
+    private void usuariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cargaDatosButton4ActionPerformed
+    }//GEN-LAST:event_usuariosButtonActionPerformed
+
+    private void tiendaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiendaButtonActionPerformed
+        Tienda tienda = new Tienda(this);
+        tienda.setVisible(true);
+        tienda.setLocationRelativeTo(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_tiendaButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton cargaDatosButton;
-    private javax.swing.JButton cargaDatosButton1;
-    private javax.swing.JButton cargaDatosButton2;
-    private javax.swing.JButton cargaDatosButton3;
-    private javax.swing.JButton cargaDatosButton4;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel labelFondoEmpleado;
-    private javax.swing.JLabel lblFecha;
-    private javax.swing.JLabel lblTetoTienda;
-    private javax.swing.JLabel lblTextoNombreyCodigo;
     private javax.swing.JPanel panelCentral;
     private javax.swing.JPanel panelCentralCenter;
     private javax.swing.JPanel panelCentralDown;
     private javax.swing.JPanel panelCentralUp;
     private javax.swing.JPanel panelSuperior;
+    private javax.swing.JButton pedidosButton;
+    private javax.swing.JButton productoButton;
+    private javax.swing.JButton tiempoTiendasButton;
+    private javax.swing.JButton tiendaButton;
+    private javax.swing.JLabel txtCompras;
+    private javax.swing.JLabel txtCrearModificar;
+    private javax.swing.JLabel txtFechaActual;
+    private javax.swing.JLabel txtNombreTienda;
+    private javax.swing.JLabel txtTienda;
+    private javax.swing.JButton usuariosButton;
+    private javax.swing.JButton ventasButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,49 +16,58 @@ import java.util.regex.Pattern;
  * @author joel
  */
 public class AnalizadorInputFile {
-    
+
     private ArrayList<String> filaAceptada;
     private ArrayList<String> filaDescartada;
+    private AnalizadorPK analizadorPK;
 
     public AnalizadorInputFile() {
         filaAceptada = new ArrayList<>();
         filaDescartada = new ArrayList<>();
+        analizadorPK = new AnalizadorPK();
     }
 
     public void leerTxt(String path) {
         try {
             FileReader fileReader = new FileReader(path);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-
+            
             String linea;//Donde se va a guardar la linea a analizar
             while ((linea = bufferedReader.readLine()) != null) {
                 String[] atributosEntidad = linea.split(","); //Separamos los atributos por coma
                 agregarLista(atributosEntidad, linea);
             }
-            
+
             fileReader.close();
         } catch (IOException e) {
             e.getMessage();
         }
-        
+
         for (int i = 0; i < filaDescartada.size(); i++) {
             System.out.println(filaDescartada.get(i));
         }
     }
 
     /**
-     * Sirve para analizar cada una de los atributos que esten en la linea actual
-     * Donde se analiza primero que tenga el numero de atributos con length
-     * Sino hay error de separacion
+     * Sirve para analizar cada una de los atributos que esten en la linea
+     * actual Donde se analiza primero que tenga el numero de atributos con
+     * length Sino hay error de separacion
+     *
      * @param arrFila
-     * @param fila 
+     * @param fila
      */
     private void agregarLista(String[] arrFila, String fila) {
         switch (arrFila[0]) {
-            case "TIENDA":
+            case "TIENDA":               
                 if (arrFila.length == 5) {
                     if (verificarTienda(arrFila)) {
-                        filaAceptada.add(fila);
+                        //Se comprueba que no exista el codigo de tienda
+                        if (analizadorPK.seRepite(fila, filaAceptada, "TIENDA")) {
+                            filaDescartada.add(fila);
+                        }
+                        else{
+                            filaAceptada.add(fila);                            
+                        }
                     } else {
                         filaDescartada.add(fila);
                     }
@@ -70,8 +79,14 @@ public class AnalizadorInputFile {
             case "TIEMPO":
                 if (arrFila.length == 4) {
                     if (verificarTiempo(arrFila)) {
+                        if (analizadorPK.seRepite(fila, filaAceptada, "TIEMPO")) {
+                            filaDescartada.add(fila);
+                        }
+                        else{
                         filaAceptada.add(fila);
-                    } else {
+                        }
+                    }
+                    else{
                         filaDescartada.add(fila);
                     }
                 } else {
@@ -82,7 +97,12 @@ public class AnalizadorInputFile {
             case "PRODUCTO":
                 if (arrFila.length == 7) {
                     if (verificarProducto(arrFila)) {
+                        if (analizadorPK.seRepite(fila, filaAceptada, "PRODUCTO")) {
+                            filaDescartada.add(fila);
+                        }
+                        else{
                         filaAceptada.add(fila);
+                        }
                     } else {
                         filaDescartada.add(fila);
                     }
@@ -94,7 +114,12 @@ public class AnalizadorInputFile {
             case "EMPLEADO":
                 if (arrFila.length == 5) {
                     if (verificarEmpleado(arrFila)) {
+                        if (analizadorPK.seRepite(fila, filaAceptada, "EMPLEADO")) {
+                            filaDescartada.add(fila);
+                        }
+                        else{
                         filaAceptada.add(fila);
+                        }
                     } else {
                         filaDescartada.add(fila);
                     }
@@ -106,7 +131,12 @@ public class AnalizadorInputFile {
             case "CLIENTE":
                 if (arrFila.length == 5) {
                     if (verificarCliente(arrFila)) {
+                        if (analizadorPK.seRepite(fila, filaAceptada, "CLIENTE")) {
+                            filaDescartada.add(fila);
+                        }
+                        else{
                         filaAceptada.add(fila);
+                        }
                     } else {
                         filaDescartada.add(fila);
                     }
@@ -118,7 +148,12 @@ public class AnalizadorInputFile {
             case "PEDIDO":
                 if (arrFila.length == 10) {
                     if (verificarPedido(arrFila)) {
+                        if (analizadorPK.seRepite(fila, filaAceptada, "PEDIDO")) {
+                            filaDescartada.add(fila);
+                        }
+                        else{
                         filaAceptada.add(fila);
+                        }
                     } else {
                         filaDescartada.add(fila);
                     }
@@ -136,7 +171,7 @@ public class AnalizadorInputFile {
         if (nombreMixto(arrTienda[1])) {
             if (esTexto(arrTienda[2])) {
                 if (esCodigo(arrTienda[3])) {
-                    if (sonNumeros(arrTienda[4])) {
+                    if (sonEnteros(arrTienda[4])) {
                         return true;
                     }
                 }
@@ -148,7 +183,7 @@ public class AnalizadorInputFile {
     private boolean verificarTiempo(String[] arrTiempo) {
         if (esCodigo(arrTiempo[1])) {
             if (esCodigo(arrTiempo[2])) {
-                if (sonNumeros(arrTiempo[3])) {
+                if (sonEnteros(arrTiempo[3])) {
                     return true;
                 }
             }
@@ -160,7 +195,7 @@ public class AnalizadorInputFile {
         if (nombreMixto(arrProducto[1])) {
             if (esTexto(arrProducto[2])) {
                 if (esCodigo(arrProducto[3])) {
-                    if (sonNumeros(arrProducto[4])) {
+                    if (sonEnteros(arrProducto[4])) {
                         if (sonDecimales(arrProducto[5])) {
                             if (esCodigo(arrProducto[6])) {
                                 return true;
@@ -175,9 +210,9 @@ public class AnalizadorInputFile {
 
     private boolean verificarEmpleado(String[] arrEmpleado) {
         if (nombreMixto(arrEmpleado[1])) {
-            if (sonNumeros(arrEmpleado[2])) {
-                if (sonNumeros(arrEmpleado[3])) {
-                    if (sonNumeros(arrEmpleado[4])) {
+            if (sonEnteros(arrEmpleado[2])) {
+                if (sonEnteros(arrEmpleado[3])) {
+                    if (sonEnteros(arrEmpleado[4])) {
                         return true;
                     }
                 }
@@ -189,8 +224,8 @@ public class AnalizadorInputFile {
     private boolean verificarCliente(String[] arrCliente) {
         if (esTexto(arrCliente[1])) {
             if (esCodigo(arrCliente[2])) {
-                if (sonNumeros(arrCliente[3])) {
-                    if (sonNumeros(arrCliente[4])) {
+                if (sonEnteros(arrCliente[3])) {
+                    if (sonEnteros(arrCliente[4])) {
                         return true;
                     }
                 }
@@ -200,15 +235,15 @@ public class AnalizadorInputFile {
     }
 
     private boolean verificarPedido(String[] arrPedido) {
-        if (sonNumeros(arrPedido[1])) {
+        if (sonEnteros(arrPedido[1])) {
             if (esCodigo(arrPedido[2])) {
                 if (esCodigo(arrPedido[3])) {
                     if (esFecha(arrPedido[4])) {
                         if (esCodigo(arrPedido[5])) {
                             if (esCodigo(arrPedido[6])) {
-                                if (sonNumeros(arrPedido[7])) {
+                                if (sonEnteros(arrPedido[7])) {
                                     if (sonDecimales(arrPedido[8])) {
-                                        if (sonDecimales(arrPedido[9])) {
+                                        if (sonNumeros(arrPedido[9])) {
                                             return true;
                                         }
                                     }
@@ -233,13 +268,13 @@ public class AnalizadorInputFile {
 
     private boolean esCodigo(String codigo) {
         String[] atributosCodigo = codigo.split("-");
-        if (atributosCodigo.length==2) {
-            return esTexto(atributosCodigo[0]) && sonNumeros(atributosCodigo[1]);
+        if (atributosCodigo.length == 2) {
+            return esTexto(atributosCodigo[0]) && sonEnteros(atributosCodigo[1]);
         }
-        return false;       
+        return false;
     }
 
-    private boolean sonNumeros(String numeros) {
+    private boolean sonEnteros(String numeros) {
         for (int i = 0; i < numeros.length(); i++) {
             if (!Character.isDigit(numeros.charAt(i))) {
                 return false;
@@ -250,30 +285,35 @@ public class AnalizadorInputFile {
 
     private boolean sonDecimales(String decimales) {
         String[] atributosDecimal = decimales.split(Pattern.quote("."));
-        if (atributosDecimal.length==2) {
-           return sonNumeros(atributosDecimal[0]) && sonNumeros(atributosDecimal[1]); 
+        if (atributosDecimal.length == 2) {
+            return sonEnteros(atributosDecimal[0]) && sonEnteros(atributosDecimal[1]);
         }
         return false;
     }
-    
-    
-    private boolean esFecha(String fecha){
+
+    private boolean esFecha(String fecha) {
         String[] atributosFecha = fecha.split("-");
-        if (atributosFecha.length==3) {
-           return sonNumeros(atributosFecha[0]) && sonNumeros(atributosFecha[1])
-                && sonNumeros(atributosFecha[2]); 
+        if (atributosFecha.length == 3) {
+            return sonEnteros(atributosFecha[0]) && sonEnteros(atributosFecha[1])
+                    && sonEnteros(atributosFecha[2]);
         }
-        return false;        
+        return false;
     }
 
-    private boolean nombreMixto(String nombreT) {
-        for (int i = 0; i < nombreT.length(); i++) {
-            if (!Character.isDigit(nombreT.charAt(i)) && !Character.isLetter(nombreT.charAt(i))
-                    && !(nombreT.charAt(i) == ' ')) {
+    private boolean nombreMixto(String nombreM) {
+        for (int i = 0; i < nombreM.length(); i++) {
+            if (!Character.isDigit(nombreM.charAt(i)) && !Character.isLetter(nombreM.charAt(i))
+                    && !(nombreM.charAt(i) == ' ')) {
                 return false;
             }
         }
         return true;
+    }
+
+    private boolean sonNumeros(String numeros) {
+
+        return sonEnteros(numeros) || sonDecimales(numeros);
+
     }
 
     public ArrayList<String> getFilaAceptada() {

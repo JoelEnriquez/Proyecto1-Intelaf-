@@ -5,8 +5,10 @@
  */
 package Main;
 
+import ConexionSQL.Conexion;
 import GUICliente.InicioCliente;
 import GUIEmpleado.InicioEmpleado;
+import java.sql.Connection;
 
 /**
  *
@@ -14,6 +16,8 @@ import GUIEmpleado.InicioEmpleado;
  */
 public class PantallaInicio extends javax.swing.JFrame {
 
+    private Connection conexionEmpleado;
+    private Connection conexionCliente;
 
     public PantallaInicio() {
         initComponents();
@@ -79,6 +83,9 @@ public class PantallaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void vEmpleadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vEmpleadosButtonActionPerformed
+        Conexion conexion = new Conexion("empleado", "intelafemp");
+        conexion.crearConexion();
+        
         InicioEmpleado inicioE = new InicioEmpleado(this);
         inicioE.setVisible(true);
         inicioE.setLocationRelativeTo(this);
