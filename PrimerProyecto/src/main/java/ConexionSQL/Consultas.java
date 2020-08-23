@@ -42,8 +42,19 @@ public class Consultas {
     }
     
     
-    public double totalActualPedido(Connection conexion){
+    public int totalActualPedido(Connection conexion, String codet1, String codet2){
+        String query = "SELECT id FROM TIEMPO WHERE  ";
+        int idTiempo = 0;
         
+        
+        return idTiempo;
+    }
+    
+    public double totalActualPedido(Connection conexion){
+        String query = "SELECT id FROM TIEMPO WHERE  ";
+        double totalActual = 0;
+        
+        return totalActual;
     }
     
     

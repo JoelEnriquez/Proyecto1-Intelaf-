@@ -123,9 +123,11 @@ public class InsertarData {
     
     public void crearTiempo(Connection conexion, Tiempo tiempo){
         
+        
     }
     
     public void crearProducto(Connection conexion, Producto producto){
+        
         
     }
     

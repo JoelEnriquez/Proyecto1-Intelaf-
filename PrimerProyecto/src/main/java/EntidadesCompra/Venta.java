@@ -16,9 +16,9 @@ public class Venta extends PeticionProducto{
     private int codigoVenta;
     private String codigoTienda;
 
-    public Venta(Date fecha, String NITCliente, double total, double anticipo,
+    public Venta(Date fecha, String NITCliente, double total,
             int codigoVenta, String codigoTienda) {
-        super(fecha, NITCliente, total, anticipo);
+        super(fecha, NITCliente, total);
         this.codigoVenta = codigoVenta;
         this.codigoTienda = codigoTienda; 
     }

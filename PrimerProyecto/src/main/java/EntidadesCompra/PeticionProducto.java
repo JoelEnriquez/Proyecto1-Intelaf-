@@ -13,13 +13,12 @@ public class PeticionProducto {
     protected Date fecha;
     protected String NITCliente;
     protected double total;
-    protected double anticipo;
+    
 
-    public PeticionProducto(Date fecha, String NITCliente, double total, double anticipo) {
+    public PeticionProducto(Date fecha, String NITCliente, double total) {
         this.fecha = fecha;
         this.NITCliente = NITCliente;
         this.total = total;
-        this.anticipo = anticipo;
     }
 
     public Date getFecha() {
@@ -46,13 +45,7 @@ public class PeticionProducto {
         this.total = total;
     }
 
-    public double getAnticipo() {
-        return anticipo;
-    }
 
-    public void setAnticipo(double anticipo) {
-        this.anticipo = anticipo;
-    }
 
     
     

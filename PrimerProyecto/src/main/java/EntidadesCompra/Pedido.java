@@ -13,14 +13,16 @@ import java.sql.Date;
  */
 public class Pedido extends PeticionProducto{
     
-    private int codigoPedido;
     private String codigoTienda1;
     private String codigoTienda2;
+    private int codigoPedido;
     private int idTiempo;
+    private double anticipo;
 
     public Pedido(Date fecha, String NITCliente, double total, double anticipo,
             int codigoPedido, String codigoTienda1, String codigoTienda2, int idTiempo) {
-        super(fecha, NITCliente, total, anticipo);
+        super(fecha, NITCliente, total);
+        this.anticipo = anticipo;
         this.codigoPedido = codigoPedido;
         this.codigoTienda1 = codigoTienda1;
         this.codigoTienda2 = codigoTienda2;
@@ -57,6 +59,14 @@ public class Pedido extends PeticionProducto{
 
     public void setIdTiempo(int idTiempo) {
         this.idTiempo = idTiempo;
+    }
+
+    public double getAnticipo() {
+        return anticipo;
+    }
+
+    public void setAnticipo(double anticipo) {
+        this.anticipo = anticipo;
     }
     
     
