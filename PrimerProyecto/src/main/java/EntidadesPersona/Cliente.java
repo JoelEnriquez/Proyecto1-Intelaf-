@@ -15,10 +15,34 @@ public class Cliente extends Persona {
     private double efectivo;
     
     public Cliente(String nombre, String NIT, String correoElectronico,
-            String direccion, int DPI, int numeroTelefono, double credito, double efectivo) {
-        super(nombre, NIT, correoElectronico, direccion, DPI, numeroTelefono);
+            String direccion, int DPI, int telefono, double credito, double efectivo) {
+        super(nombre, NIT, correoElectronico, direccion, DPI, telefono);
         this.credito = credito;
         this.efectivo = efectivo;
+    }
+    
+    /**
+     * Constructor entrada de texto
+     * @param nombre
+     * @param NIT
+     * @param telefono
+     * @param credito 
+     */
+    public Cliente(String nombre, String NIT, int telefono, double credito){
+        super(nombre, telefono);
+        super.NIT = NIT;
+        this.credito = credito;
+    }
+    
+    /**
+     * Constructor minimo e obligatorio
+     * @param nombre
+     * @param telefono
+     * @param NIT 
+     */
+    public Cliente(String nombre, int telefono, String NIT){
+        super(nombre, telefono);
+        super.NIT = NIT;
     }
 
     public double getCredito() {

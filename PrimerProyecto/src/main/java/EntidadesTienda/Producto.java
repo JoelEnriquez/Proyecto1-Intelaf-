@@ -15,20 +15,21 @@ public class Producto {
     private String fabricante;
     private String descripcion;
     private String codigo;
+    private String codigoTienda;
     private double precio;
     private int cantidad;
     private int garantia;
 
-    public Producto(String nombre, String fabricante, String descripcion, String codigo, double precio, int cantidad, int garantia) {
+    public Producto(String nombre, String fabricante, String codigo, double precio,
+            int cantidad, String codigoTienda) {
         this.nombre = nombre;
         this.fabricante = fabricante;
-        this.descripcion = descripcion;
         this.codigo = codigo;
         this.precio = precio;
         this.cantidad = cantidad;
-        this.garantia = garantia;
+        this.codigoTienda = codigoTienda;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -84,6 +85,14 @@ public class Producto {
     public void setGarantia(int garantia) {
         this.garantia = garantia;
     }
-    
+
+    public String getCodigoTienda() {
+        return codigoTienda;
+    }
+
+    public void setCodigoTienda(String codigoTienda) {
+        this.codigoTienda = codigoTienda;
+    }
+
     
 }

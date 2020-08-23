@@ -16,15 +16,25 @@ public class Persona {
     protected String correoElectronico;
     protected String direccion;
     protected int DPI;
-    protected int numeroTelefono;
+    protected int telefono;
 
-    public Persona(String nombre, String NIT, String correoElectronico, String direccion, int DPI, int numeroTelefono) {
+    public Persona(String nombre, String NIT, String correoElectronico, String direccion, int DPI, int telefono) {
         this.nombre = nombre;
         this.NIT = NIT;
         this.correoElectronico = correoElectronico;
         this.direccion = direccion;
         this.DPI = DPI;
-        this.numeroTelefono = numeroTelefono;
+        this.telefono = telefono;
+    }
+    
+    /**
+     * Constructor persona basico
+     * @param nombre
+     * @param telefono 
+     */
+    public Persona(String nombre, int telefono){
+        this.nombre = nombre;
+        this.telefono = telefono;
     }
 
     public String getNombre() {
@@ -55,12 +65,12 @@ public class Persona {
         return DPI;
     }
 
-    public int getNumeroTelefono() {
-        return numeroTelefono;
+    public int getTelefono() {
+        return telefono;
     }
 
-    public void setNumeroTelefono(int numeroTelefono) {
-        this.numeroTelefono = numeroTelefono;
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
     }
 
     

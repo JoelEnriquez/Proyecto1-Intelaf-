@@ -5,7 +5,9 @@
  */
 package GUIEmpleado;
 
+import ConexionSQL.Consultas;
 import Main.PantallaInicio;
+import java.sql.Connection;
 
 /**
  *
@@ -15,13 +17,53 @@ public class InicioEmpleado extends javax.swing.JFrame {
 
     private PantallaInicio pInicio;
     private String nombreTiendaActual;
+    private boolean existenciaDatos;
+    private Connection conexion;
+    private Consultas consultas;
+    
     /**
      * Creates new form InicioEmpleado
      * @param pInicio
+     * @param existenciaDatos
+     * @param consultas
      */
-    public InicioEmpleado(PantallaInicio pInicio) {
+    public InicioEmpleado(PantallaInicio pInicio, boolean existenciaDatos, Consultas consultas) {
         this.pInicio = pInicio;
+        this.existenciaDatos = existenciaDatos;
+        this.consultas = consultas;
         initComponents();
+        controlarComponentes();
+    }
+    
+    private void controlarComponentes(){
+        if (existenciaDatos) {
+            activarComponentes();
+        }
+        else{
+            desactivarComponentes();
+        }
+    }
+    
+    private void activarComponentes(){
+        tiendaButton.setEnabled(true);
+        tiempoTiendasButton.setEnabled(true);
+        productoButton.setEnabled(true);
+        usuariosButton.setEnabled(true);
+        ventasButton.setEnabled(true);
+        pedidosButton.setEnabled(true);
+        
+        cargaDatosButton.setEnabled(false);
+    }
+    
+    private void desactivarComponentes(){
+        tiendaButton.setEnabled(false);
+        tiempoTiendasButton.setEnabled(false);
+        productoButton.setEnabled(false);
+        usuariosButton.setEnabled(false);
+        ventasButton.setEnabled(false);
+        pedidosButton.setEnabled(false);
+        
+        cargaDatosButton.setEnabled(true);
     }
 
     /**
@@ -197,7 +239,7 @@ public class InicioEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void cargaDatosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaDatosButtonActionPerformed
-        CargaDatos carga = new CargaDatos(this);
+        CargaDatos carga = new CargaDatos(this, consultas);
         carga.setVisible(true);
         carga.setLocationRelativeTo(this);
         this.setVisible(false);

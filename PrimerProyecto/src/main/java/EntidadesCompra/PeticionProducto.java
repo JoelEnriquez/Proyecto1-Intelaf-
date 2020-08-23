@@ -5,14 +5,55 @@
  */
 package EntidadesCompra;
 
-import java.util.Date;
+import java.sql.Date;
 
-/**
- *
- * @author joel
- */
+
 public class PeticionProducto {
     
     protected Date fecha;
+    protected String NITCliente;
+    protected double total;
+    protected double anticipo;
+
+    public PeticionProducto(Date fecha, String NITCliente, double total, double anticipo) {
+        this.fecha = fecha;
+        this.NITCliente = NITCliente;
+        this.total = total;
+        this.anticipo = anticipo;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getNITCliente() {
+        return NITCliente;
+    }
+
+    public void setNITCliente(String NITCliente) {
+        this.NITCliente = NITCliente;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public double getAnticipo() {
+        return anticipo;
+    }
+
+    public void setAnticipo(double anticipo) {
+        this.anticipo = anticipo;
+    }
+
+    
     
 }

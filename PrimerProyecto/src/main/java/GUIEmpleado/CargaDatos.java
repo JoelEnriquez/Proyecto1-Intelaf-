@@ -5,6 +5,7 @@
  */
 package GUIEmpleado;
 
+import ConexionSQL.Consultas;
 import SalidaDatos.AnalizadorInputFile;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
@@ -22,14 +23,16 @@ public class CargaDatos extends javax.swing.JFrame {
     private JFileChooser jfile;
     private ArrayList<String> filaAceptada;
     private ArrayList<String> filaDescartada;
+    private Consultas consultas;
 
     /**
      * Creates new form CargaDatos
      *
      * @param iEmpleado
      */
-    public CargaDatos(InicioEmpleado iEmpleado) {
+    public CargaDatos(InicioEmpleado iEmpleado, Consultas consultas) {
         this.iEmpleado = iEmpleado;
+        this.consultas = consultas;
         jfile = new JFileChooser();
         initComponents();
         desactivarComponentes();

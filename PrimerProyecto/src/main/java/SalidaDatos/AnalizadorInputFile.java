@@ -212,7 +212,7 @@ public class AnalizadorInputFile {
         if (nombreMixto(arrEmpleado[1])) {
             if (sonEnteros(arrEmpleado[2])) {
                 if (sonEnteros(arrEmpleado[3])) {
-                    if (sonEnteros(arrEmpleado[4])) {
+                    if (sonNumeros(arrEmpleado[4])) {
                         return true;
                     }
                 }
@@ -311,9 +311,7 @@ public class AnalizadorInputFile {
     }
 
     private boolean sonNumeros(String numeros) {
-
         return sonEnteros(numeros) || sonDecimales(numeros);
-
     }
 
     public ArrayList<String> getFilaAceptada() {
