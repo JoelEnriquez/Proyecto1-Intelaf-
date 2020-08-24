@@ -103,7 +103,7 @@ public class PantallaInicio extends javax.swing.JFrame {
             elegirTF.setLocationRelativeTo(this);
             elegirTF.setVisible(true);
         } else {
-            InicioEmpleado inicioE = new InicioEmpleado(this, existenciaDatos,consultas);
+            InicioEmpleado inicioE = new InicioEmpleado(this, existenciaDatos,consultas,conexionEmpleado);
             inicioE.setVisible(true);
             inicioE.setLocationRelativeTo(this);
             this.setVisible(false);

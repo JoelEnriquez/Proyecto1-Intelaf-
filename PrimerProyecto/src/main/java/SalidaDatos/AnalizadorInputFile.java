@@ -62,7 +62,7 @@ public class AnalizadorInputFile {
                 if (arrFila.length == 5) {
                     if (verificarTienda(arrFila)) {
                         //Se comprueba que no exista el codigo de tienda
-                        if (analizadorPK.seRepite(fila, filaAceptada, "TIENDA")) {
+                        if (analizadorPK.seRepite(fila, filaAceptada)) {
                             filaDescartada.add(fila);
                         }
                         else{
@@ -79,7 +79,7 @@ public class AnalizadorInputFile {
             case "TIEMPO":
                 if (arrFila.length == 4) {
                     if (verificarTiempo(arrFila)) {
-                        if (analizadorPK.seRepite(fila, filaAceptada, "TIEMPO")) {
+                        if (analizadorPK.seRepite(fila, filaAceptada)) {
                             filaDescartada.add(fila);
                         }
                         else{
@@ -97,7 +97,7 @@ public class AnalizadorInputFile {
             case "PRODUCTO":
                 if (arrFila.length == 7) {
                     if (verificarProducto(arrFila)) {
-                        if (analizadorPK.seRepite(fila, filaAceptada, "PRODUCTO")) {
+                        if (analizadorPK.seRepite(fila, filaAceptada)) {
                             filaDescartada.add(fila);
                         }
                         else{
@@ -114,7 +114,7 @@ public class AnalizadorInputFile {
             case "EMPLEADO":
                 if (arrFila.length == 5) {
                     if (verificarEmpleado(arrFila)) {
-                        if (analizadorPK.seRepite(fila, filaAceptada, "EMPLEADO")) {
+                        if (analizadorPK.seRepite(fila, filaAceptada)) {
                             filaDescartada.add(fila);
                         }
                         else{
@@ -131,7 +131,7 @@ public class AnalizadorInputFile {
             case "CLIENTE":
                 if (arrFila.length == 5) {
                     if (verificarCliente(arrFila)) {
-                        if (analizadorPK.seRepite(fila, filaAceptada, "CLIENTE")) {
+                        if (analizadorPK.seRepite(fila, filaAceptada)) {
                             filaDescartada.add(fila);
                         }
                         else{
@@ -148,7 +148,7 @@ public class AnalizadorInputFile {
             case "PEDIDO":
                 if (arrFila.length == 10) {
                     if (verificarPedido(arrFila)) {
-                        if (analizadorPK.seRepite(fila, filaAceptada, "PEDIDO")) {
+                        if (analizadorPK.seRepite(fila, filaAceptada)) {
                             filaDescartada.add(fila);
                         }
                         else{

@@ -5,10 +5,6 @@
  */
 package EntidadesTienda;
 
-import EntidadesCompra.*;
-import EntidadesPersona.Empleado;
-import java.util.ArrayList;
-
 /**
  *
  * @author joel
@@ -98,8 +94,4 @@ public class Tienda {
     public void setHorario(String horario) {
         this.horario = horario;
     }
-    
-    
-    
-    
 }

@@ -20,6 +20,13 @@ public class PaquetePedido extends Paquete{
         this.idPaquetePedido = idPaquetePedido;
         this.codigoPedido = codigoPedido;
     }
+    
+    public PaquetePedido(int codigoPedido, String idProducto,
+            int cantidad, double total) {
+        super(idProducto, cantidad, total);
+        this.codigoPedido = codigoPedido;
+    }
+    
 
     public int getIdPaquetePedido() {
         return idPaquetePedido;
@@ -27,6 +34,13 @@ public class PaquetePedido extends Paquete{
 
     public int getCodigoPedido() {
         return codigoPedido;
+    }
+    
+    public String querySignos(){
+        if (idPaquetePedido>0) {
+            return "?,?,?,?,?";
+        }
+        return "?,?,?,?";
     }
 
     

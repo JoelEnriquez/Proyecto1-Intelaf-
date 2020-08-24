@@ -26,11 +26,14 @@ public class InicioEmpleado extends javax.swing.JFrame {
      * @param pInicio
      * @param existenciaDatos
      * @param consultas
+     * @param conexion
      */
-    public InicioEmpleado(PantallaInicio pInicio, boolean existenciaDatos, Consultas consultas) {
+    public InicioEmpleado(PantallaInicio pInicio, boolean existenciaDatos, Consultas consultas,
+            Connection conexion) {
         this.pInicio = pInicio;
         this.existenciaDatos = existenciaDatos;
         this.consultas = consultas;
+        this.conexion = conexion;
         initComponents();
         controlarComponentes();
     }
@@ -239,7 +242,7 @@ public class InicioEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void cargaDatosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaDatosButtonActionPerformed
-        CargaDatos carga = new CargaDatos(this, consultas);
+        CargaDatos carga = new CargaDatos(this, consultas, conexion);
         carga.setVisible(true);
         carga.setLocationRelativeTo(this);
         this.setVisible(false);
@@ -258,7 +261,9 @@ public class InicioEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_productoButtonActionPerformed
 
     private void pedidosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosButtonActionPerformed
-        // TODO add your handling code here:
+        Pedidos pedidos = new Pedidos(this, conexion, consultas);
+        pedidos.setLocationRelativeTo(this);
+        pedidos.setVisible(true);
     }//GEN-LAST:event_pedidosButtonActionPerformed
 
     private void usuariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosButtonActionPerformed

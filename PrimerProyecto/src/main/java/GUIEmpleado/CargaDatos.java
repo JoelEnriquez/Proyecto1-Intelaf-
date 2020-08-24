@@ -6,7 +6,10 @@
 package GUIEmpleado;
 
 import ConexionSQL.Consultas;
+import ConexionSQL.InsertarData;
 import SalidaDatos.AnalizadorInputFile;
+import java.awt.HeadlessException;
+import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -24,15 +27,19 @@ public class CargaDatos extends javax.swing.JFrame {
     private ArrayList<String> filaAceptada;
     private ArrayList<String> filaDescartada;
     private Consultas consultas;
+    private Connection conexion;
 
     /**
      * Creates new form CargaDatos
      *
      * @param iEmpleado
+     * @param consultas
+     * @param conexion
      */
-    public CargaDatos(InicioEmpleado iEmpleado, Consultas consultas) {
+    public CargaDatos(InicioEmpleado iEmpleado, Consultas consultas, Connection conexion) {
         this.iEmpleado = iEmpleado;
         this.consultas = consultas;
+        this.conexion = conexion;
         jfile = new JFileChooser();
         initComponents();
         desactivarComponentes();
@@ -105,10 +112,10 @@ public class CargaDatos extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
             .addGroup(panelIzquierdoLayout.createSequentialGroup()
                 .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(nombretxtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelIzquierdoLayout.createSequentialGroup()
-                            .addGap(27, 27, 27)
+                    .addGroup(panelIzquierdoLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nombretxtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(analizarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelIzquierdoLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
@@ -141,6 +148,11 @@ public class CargaDatos extends javax.swing.JFrame {
 
         uploadButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/subir (2).png"))); // NOI18N
         uploadButton.setContentAreaFilled(false);
+        uploadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadButtonActionPerformed(evt);
+            }
+        });
 
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/izquierda (1).png"))); // NOI18N
         backButton.setContentAreaFilled(false);
@@ -231,6 +243,18 @@ public class CargaDatos extends javax.swing.JFrame {
         }       
         uploadButton.setEnabled(true);
     }//GEN-LAST:event_analizarButtonActionPerformed
+
+    private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
+        InsertarData insertarD = new InsertarData();
+        try {
+            insertarD.cargarDatos(conexion, filaAceptada);
+            JOptionPane.showMessageDialog(this,"Se han cargado los datos con exito!",
+                    "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this,e.getMessage()+". No se han cargado los datos.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_uploadButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

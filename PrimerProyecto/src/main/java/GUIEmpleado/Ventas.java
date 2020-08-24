@@ -5,16 +5,29 @@
  */
 package GUIEmpleado;
 
+import ConexionSQL.Consultas;
+import java.sql.Connection;
+
 /**
  *
  * @author joel
  */
 public class Ventas extends javax.swing.JFrame {
 
+    private InicioEmpleado inicioE;
+    private Connection conexion;
+    private Consultas consultas;
+    
     /**
      * Creates new form Ventas
+     * @param inicioE
+     * @param conexion
+     * @param consultas
      */
-    public Ventas() {
+    public Ventas(InicioEmpleado inicioE, Connection conexion, Consultas consultas) {
+        this.inicioE = inicioE;
+        this.conexion = conexion;
+        this.consultas = consultas;
         initComponents();
     }
 
@@ -33,11 +46,11 @@ public class Ventas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
+            .addGap(0, 628, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
 
         pack();
