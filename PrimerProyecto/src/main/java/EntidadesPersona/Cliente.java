@@ -14,9 +14,21 @@ public class Cliente extends Persona {
     private double credito;
     private double efectivo;
     
-    public Cliente(String nombre, String NIT, String correoElectronico,
-            String direccion, int DPI, int telefono, double credito, double efectivo) {
-        super(nombre, NIT, correoElectronico, direccion, DPI, telefono);
+    /**
+     * Constructor completo para crear personas
+     * @param nombre
+     * @param apellido
+     * @param NIT
+     * @param correoElectronico
+     * @param direccion
+     * @param DPI
+     * @param telefono
+     * @param credito
+     * @param efectivo 
+     */
+    public Cliente(String nombre,String apellido, String NIT, String correoElectronico,
+            String direccion, String DPI, int telefono, double credito, double efectivo) {
+        super(nombre,apellido, NIT, correoElectronico, direccion, DPI, telefono);
         this.credito = credito;
         this.efectivo = efectivo;
     }

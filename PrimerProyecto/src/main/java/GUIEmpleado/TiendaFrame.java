@@ -5,19 +5,29 @@
  */
 package GUIEmpleado;
 
+import ConexionSQL.InsertarData;
+import GUIConsultas.ListadoTiendas;
+import java.sql.Connection;
+
 /**
  *
  * @author joel
  */
-public class Tienda extends javax.swing.JFrame {
+public class TiendaFrame extends javax.swing.JFrame {
 
     private InicioEmpleado inicioE;
+    private InsertarData insertarD;
+    private Connection conexion;
     /**
      * Creates new form Tienda
      * @param inicioE
+     * @param insertarD
+     * @param conexion
      */
-    public Tienda(InicioEmpleado inicioE) {
+    public TiendaFrame(InicioEmpleado inicioE, InsertarData insertarD, Connection conexion) {
         this.inicioE = inicioE;
+        this.insertarD = insertarD;
+        this.conexion = conexion;
         initComponents();
     }
 
@@ -72,7 +82,9 @@ public class Tienda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void verTiendasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verTiendasButtonActionPerformed
-        // TODO add your handling code here:
+        ListadoTiendas listTiendas = new ListadoTiendas(this, true, conexion);
+        listTiendas.setLocationRelativeTo(this);
+        listTiendas.setVisible(true);
     }//GEN-LAST:event_verTiendasButtonActionPerformed
 
     private void doorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doorButtonActionPerformed
@@ -81,7 +93,7 @@ public class Tienda extends javax.swing.JFrame {
     }//GEN-LAST:event_doorButtonActionPerformed
 
     private void agregarTiendabuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTiendabuttonActionPerformed
-        AgregarTienda agregarTienda = new AgregarTienda(this, true);
+        AgregarTienda agregarTienda = new AgregarTienda(this, true, insertarD, conexion, inicioE);
         agregarTienda.setLocationRelativeTo(this);
         agregarTienda.setVisible(true);
     }//GEN-LAST:event_agregarTiendabuttonActionPerformed

@@ -5,9 +5,12 @@
  */
 package GUIEmpleado;
 
+import GUIConsultas.TiempoEntreTiendas;
 import ConexionSQL.Consultas;
+import ConexionSQL.InsertarData;
 import Main.PantallaInicio;
 import java.sql.Connection;
+import javax.swing.JLabel;
 
 /**
  *
@@ -16,13 +19,16 @@ import java.sql.Connection;
 public class InicioEmpleado extends javax.swing.JFrame {
 
     private PantallaInicio pInicio;
-    private String nombreTiendaActual;
+    private String nombreTiendaActual = "";
+    private String fechaActual = "";
     private boolean existenciaDatos;
     private Connection conexion;
     private Consultas consultas;
-    
+    private InsertarData insertarD;
+
     /**
      * Creates new form InicioEmpleado
+     *
      * @param pInicio
      * @param existenciaDatos
      * @param consultas
@@ -34,38 +40,38 @@ public class InicioEmpleado extends javax.swing.JFrame {
         this.existenciaDatos = existenciaDatos;
         this.consultas = consultas;
         this.conexion = conexion;
+        this.insertarD = new InsertarData();
         initComponents();
         controlarComponentes();
     }
-    
-    private void controlarComponentes(){
+
+    private void controlarComponentes() {
         if (existenciaDatos) {
             activarComponentes();
-        }
-        else{
+        } else {
             desactivarComponentes();
         }
     }
-    
-    private void activarComponentes(){
+
+    private void activarComponentes() {
         tiendaButton.setEnabled(true);
         tiempoTiendasButton.setEnabled(true);
         productoButton.setEnabled(true);
         usuariosButton.setEnabled(true);
         ventasButton.setEnabled(true);
         pedidosButton.setEnabled(true);
-        
+
         cargaDatosButton.setEnabled(false);
     }
-    
-    private void desactivarComponentes(){
+
+    private void desactivarComponentes() {
         tiendaButton.setEnabled(false);
         tiempoTiendasButton.setEnabled(false);
         productoButton.setEnabled(false);
         usuariosButton.setEnabled(false);
         ventasButton.setEnabled(false);
         pedidosButton.setEnabled(false);
-        
+
         cargaDatosButton.setEnabled(true);
     }
 
@@ -84,6 +90,7 @@ public class InicioEmpleado extends javax.swing.JFrame {
         txtTienda = new javax.swing.JLabel();
         panelCentral = new javax.swing.JPanel();
         panelCentralUp = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         panelCentralDown = new javax.swing.JPanel();
         backButton = new javax.swing.JButton();
         cargaDatosButton = new javax.swing.JButton();
@@ -122,16 +129,10 @@ public class InicioEmpleado extends javax.swing.JFrame {
 
         panelCentral.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout panelCentralUpLayout = new javax.swing.GroupLayout(panelCentralUp);
-        panelCentralUp.setLayout(panelCentralUpLayout);
-        panelCentralUpLayout.setHorizontalGroup(
-            panelCentralUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        panelCentralUpLayout.setVerticalGroup(
-            panelCentralUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        panelCentralUp.setLayout(new java.awt.CardLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/INTELAF-GUATEMALA.jpg"))); // NOI18N
+        panelCentralUp.add(jLabel1, "card2");
 
         panelCentral.add(panelCentralUp, java.awt.BorderLayout.NORTH);
 
@@ -242,22 +243,31 @@ public class InicioEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void cargaDatosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaDatosButtonActionPerformed
-        CargaDatos carga = new CargaDatos(this, consultas, conexion);
+        CargaDatos carga = new CargaDatos(this, consultas, conexion, pInicio);
         carga.setVisible(true);
         carga.setLocationRelativeTo(this);
         this.setVisible(false);
     }//GEN-LAST:event_cargaDatosButtonActionPerformed
 
     private void ventasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventasButtonActionPerformed
-        // TODO add your handling code here:
+        Ventas ventas = new Ventas(this, conexion, consultas,insertarD);
+        ventas.setLocationRelativeTo(this);
+        ventas.setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_ventasButtonActionPerformed
 
     private void tiempoTiendasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiempoTiendasButtonActionPerformed
-        // TODO add your handling code here:
+        TiempoEntreTiendas tiempoT = new TiempoEntreTiendas(this, true, conexion);
+        tiempoT.setLocationRelativeTo(this);
+        tiempoT.setVisible(true);
     }//GEN-LAST:event_tiempoTiendasButtonActionPerformed
 
     private void productoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoButtonActionPerformed
-        // TODO add your handling code here:
+        ProductoFrame productoF = new ProductoFrame(this, insertarD, conexion);
+        productoF.setLocationRelativeTo(this);
+        productoF.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_productoButtonActionPerformed
 
     private void pedidosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosButtonActionPerformed
@@ -267,20 +277,39 @@ public class InicioEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_pedidosButtonActionPerformed
 
     private void usuariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuariosButtonActionPerformed
-        // TODO add your handling code here:
+        Usuarios usuarios = new Usuarios(this, conexion, insertarD, consultas);
+        usuarios.setLocationRelativeTo(this);
+        usuarios.setVisible(true);
     }//GEN-LAST:event_usuariosButtonActionPerformed
 
     private void tiendaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tiendaButtonActionPerformed
-        Tienda tienda = new Tienda(this);
+        TiendaFrame tienda = new TiendaFrame(this, insertarD, conexion);
         tienda.setVisible(true);
         tienda.setLocationRelativeTo(this);
         this.setVisible(false);
     }//GEN-LAST:event_tiendaButtonActionPerformed
 
+    public void setTxtFechaActual(String fechaActual) {
+        txtFechaActual.setText(fechaActual);
+    }
+
+    public void setTxtNombreTienda(String nombreTienda) {
+        txtNombreTienda.setText(nombreTienda);
+    }
+
+    public String getTxtFechaActual() {
+        return txtFechaActual.getText();
+    }
+
+    public String getTxtNombreTienda() {
+        return txtNombreTienda.getText();
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton cargaDatosButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelFondoEmpleado;
     private javax.swing.JPanel panelCentral;
     private javax.swing.JPanel panelCentralCenter;

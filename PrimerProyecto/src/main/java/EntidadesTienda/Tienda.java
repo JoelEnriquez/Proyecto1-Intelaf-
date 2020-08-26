@@ -39,6 +39,16 @@ public class Tienda {
         this.telefono1 = telefono1;
     }
 
+    public Tienda(String nombre, String direccion, String codigo, int telefono1, int telefono2, String correoElectronico, String horario) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.codigo = codigo;
+        this.telefono1 = telefono1;
+        this.telefono2 = telefono2;
+        this.correoElectronico = correoElectronico;
+        this.horario = horario;
+    }
+
     public String getNombre() {
         return nombre;
     }

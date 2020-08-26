@@ -12,15 +12,33 @@ package EntidadesPersona;
 public class Persona {
     
     protected String nombre;
+    protected String apellido;
     protected String NIT;
     protected String correoElectronico;
     protected String direccion;
-    protected int DPI;
+    protected String DPI;
     protected int telefono;
 
-    public Persona(String nombre, String NIT, String correoElectronico, String direccion, int DPI, int telefono) {
+    public Persona(String nombre, String apellido, String NIT, String correoElectronico, String direccion, String DPI, int telefono) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.NIT = NIT;
+        this.correoElectronico = correoElectronico;
+        this.direccion = direccion;
+        this.DPI = DPI;
+        this.telefono = telefono;
+    }
+    
+    /**
+     * Constructor minimo persona para empleado
+     * @param nombre
+     * @param correoElectronico
+     * @param direccion
+     * @param DPI
+     * @param telefono 
+     */
+    public Persona(String nombre, String correoElectronico, String direccion, String DPI, int telefono) {
+        this.nombre = nombre;
         this.correoElectronico = correoElectronico;
         this.direccion = direccion;
         this.DPI = DPI;
@@ -45,7 +63,7 @@ public class Persona {
         return NIT;
     }
 
-    public String getCorreo_electronico() {
+    public String getCorreoElectronico() {
         return correoElectronico;
     }
 
@@ -61,7 +79,7 @@ public class Persona {
         this.direccion = direccion;
     }
 
-    public int getDPI() {
+    public String getDPI() {
         return DPI;
     }
 
@@ -72,6 +90,19 @@ public class Persona {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    
+    
+    
+    
 
     
 }

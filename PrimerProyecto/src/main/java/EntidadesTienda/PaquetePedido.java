@@ -12,35 +12,20 @@ package EntidadesTienda;
 public class PaquetePedido extends Paquete{
     
     private int idPaquetePedido;
-    private int codigoPedido;
+    private int idPedido;
     
-    public PaquetePedido(int idPaquetePedido, int codigoPedido, String idProducto,
+    public PaquetePedido(int idPedido, String idProducto,
             int cantidad, double total) {
         super(idProducto, cantidad, total);
-        this.idPaquetePedido = idPaquetePedido;
-        this.codigoPedido = codigoPedido;
-    }
-    
-    public PaquetePedido(int codigoPedido, String idProducto,
-            int cantidad, double total) {
-        super(idProducto, cantidad, total);
-        this.codigoPedido = codigoPedido;
-    }
-    
+        this.idPedido = idPedido;
+    }  
 
     public int getIdPaquetePedido() {
         return idPaquetePedido;
     }
 
-    public int getCodigoPedido() {
-        return codigoPedido;
-    }
-    
-    public String querySignos(){
-        if (idPaquetePedido>0) {
-            return "?,?,?,?,?";
-        }
-        return "?,?,?,?";
+    public int getIdPedido() {
+        return idPedido;
     }
 
     

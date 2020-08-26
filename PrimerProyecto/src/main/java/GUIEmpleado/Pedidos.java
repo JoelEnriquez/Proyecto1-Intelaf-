@@ -41,15 +41,15 @@ public class Pedidos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        encargarPedidoButton = new javax.swing.JButton();
+        registrarPedidosButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        llegaranTiendaButton = new javax.swing.JButton();
+        pedidosRegistrarButton = new javax.swing.JButton();
+        pedidosRetrasadosButton = new javax.swing.JButton();
+        pedidosOtrasTiendasButton = new javax.swing.JButton();
+        pedidosCursoClienteButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         carritoCompraFondo = new javax.swing.JLabel();
 
@@ -57,13 +57,13 @@ public class Pedidos extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
-        jButton1.setText("Encargar Pedido");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 230, 60));
+        encargarPedidoButton.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        encargarPedidoButton.setText("Encargar Pedido");
+        getContentPane().add(encargarPedidoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 230, 60));
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
-        jButton2.setText("Registrar Pedidos");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 220, 60));
+        registrarPedidosButton.setFont(new java.awt.Font("Dialog", 1, 22)); // NOI18N
+        registrarPedidosButton.setText("Registrar Pedidos");
+        getContentPane().add(registrarPedidosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 120, 220, 60));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -74,52 +74,53 @@ public class Pedidos extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 160, 60));
 
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jButton3.setText("Llegaran a tienda");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        llegaranTiendaButton.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        llegaranTiendaButton.setText("Llegaran a tienda");
+        llegaranTiendaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                llegaranTiendaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 170, 50));
+        getContentPane().add(llegaranTiendaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 170, 50));
 
-        jButton4.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jButton4.setText("Pedidos en tienda para registrar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        pedidosRegistrarButton.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        pedidosRegistrarButton.setText("Pedidos en tienda para registrar");
+        pedidosRegistrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                pedidosRegistrarButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 280, 50));
+        getContentPane().add(pedidosRegistrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 280, 50));
 
-        jButton5.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jButton5.setText("Vienen retrasados");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        pedidosRetrasadosButton.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        pedidosRetrasadosButton.setText("Vienen retrasados");
+        pedidosRetrasadosButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                pedidosRetrasadosButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 170, 50));
+        getContentPane().add(pedidosRetrasadosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 170, 50));
 
-        jButton6.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jButton6.setText("Van a llegar a otra tienda");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        pedidosOtrasTiendasButton.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        pedidosOtrasTiendasButton.setText("Van a llegar a otra tienda");
+        pedidosOtrasTiendasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                pedidosOtrasTiendasButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 280, 50));
+        getContentPane().add(pedidosOtrasTiendasButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 280, 50));
 
-        jButton7.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        jButton7.setText("Pedidos en curso de cliente");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        pedidosCursoClienteButton.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        pedidosCursoClienteButton.setText("Pedidos en curso de cliente");
+        pedidosCursoClienteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                pedidosCursoClienteButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 250, 50));
+        getContentPane().add(pedidosCursoClienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 250, 50));
 
         backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/izquierda (1).png"))); // NOI18N
+        backButton.setContentAreaFilled(false);
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
@@ -133,25 +134,25 @@ public class Pedidos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void llegaranTiendaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llegaranTiendaButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_llegaranTiendaButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void pedidosRegistrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosRegistrarButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_pedidosRegistrarButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void pedidosRetrasadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosRetrasadosButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_pedidosRetrasadosButtonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void pedidosOtrasTiendasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosOtrasTiendasButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_pedidosOtrasTiendasButtonActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void pedidosCursoClienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pedidosCursoClienteButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_pedidosCursoClienteButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.setVisible(false);
@@ -163,14 +164,14 @@ public class Pedidos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JLabel carritoCompraFondo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton encargarPedidoButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton llegaranTiendaButton;
+    private javax.swing.JButton pedidosCursoClienteButton;
+    private javax.swing.JButton pedidosOtrasTiendasButton;
+    private javax.swing.JButton pedidosRegistrarButton;
+    private javax.swing.JButton pedidosRetrasadosButton;
+    private javax.swing.JButton registrarPedidosButton;
     // End of variables declaration//GEN-END:variables
 }

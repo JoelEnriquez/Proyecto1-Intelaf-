@@ -6,6 +6,7 @@
 package EntidadesCompra;
 
 import java.sql.Date;
+import java.util.Random;
 
 /**
  *
@@ -13,44 +14,29 @@ import java.sql.Date;
  */
 public class Pedido extends PeticionProducto{
     
-    private String codigoTienda1;
-    private String codigoTienda2;
-    private int codigoPedido;
+    private int idPedido;
     private int idTiempo;
     private double anticipo;
+    private String estadoPedido;
+    private boolean pedidoAtrasado;
 
     public Pedido(Date fecha, String NITCliente, double total, double anticipo,
-            int codigoPedido, String codigoTienda1, String codigoTienda2, int idTiempo) {
+            int idPedido,int idTiempo) {
         super(fecha, NITCliente, total);
         this.anticipo = anticipo;
-        this.codigoPedido = codigoPedido;
-        this.codigoTienda1 = codigoTienda1;
-        this.codigoTienda2 = codigoTienda2;
+        this.idPedido = idPedido;
         this.idTiempo = idTiempo;
+        estadoPedido = "En curso";
+        
+        definirPedidoAtrasado();
     }
 
-    public int getCodigoPedido() {
-        return codigoPedido;
+    public int getIdPedido() {
+        return idPedido;
     }
 
-    public void setCodigoPedido(int codigoPedido) {
-        this.codigoPedido = codigoPedido;
-    }
-
-    public String getCodigoTienda1() {
-        return codigoTienda1;
-    }
-
-    public void setCodigoTienda1(String codigoTienda1) {
-        this.codigoTienda1 = codigoTienda1;
-    }
-
-    public String getCodigoTienda2() {
-        return codigoTienda2;
-    }
-
-    public void setCodigoTienda2(String codigoTienda2) {
-        this.codigoTienda2 = codigoTienda2;
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
     }
 
     public int getIdTiempo() {
@@ -68,8 +54,32 @@ public class Pedido extends PeticionProducto{
     public void setAnticipo(double anticipo) {
         this.anticipo = anticipo;
     }
+
+    public String getEstadoPedido() {
+        return estadoPedido;
+    }
+
+    public void setEstadoPedido(String estadoPedido) {
+        this.estadoPedido = estadoPedido;
+    }
+
+    public boolean getPedidoAtrasado() {
+        return pedidoAtrasado;
+    }
+
+    public void setPedidoAtrasado(boolean pedidoAtrasado) {
+        this.pedidoAtrasado = pedidoAtrasado;
+    }
     
-    
-    
+    /**
+     * Se define si el pedido va a llegar atrasado o no
+     */
+    private void definirPedidoAtrasado(){
+        Random r = new Random();
+        int valorDado = r.nextInt(100)+1;
+        
+        pedidoAtrasado = valorDado > 75; 
+    }
+ 
     
 }

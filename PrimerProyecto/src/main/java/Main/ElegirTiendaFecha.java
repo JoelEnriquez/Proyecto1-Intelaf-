@@ -5,7 +5,17 @@
  */
 package Main;
 
+import ConexionSQL.Consultas;
+import ConexionSQL.InfoInicial;
+import ConexionSQL.InsertarData;
+import EntidadesPersona.Registro;
+import GUIEmpleado.InicioEmpleado;
 import java.sql.Connection;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,18 +25,47 @@ public class ElegirTiendaFecha extends javax.swing.JDialog {
 
     private PantallaInicio pantallaInicio;
     private Connection conexionE;
-    
+    private ArrayList<String> nombreTiendas;
+    private ArrayList<String> nombreCodeEmpleados;
+    private InicioEmpleado inicioE;
+    private Consultas consultas;
+
     /**
      * Creates new form ElegirTienda
+     *
      * @param pantallaInicio
      * @param modal
      * @param conexionE
+     * @param inicioE
+     * @param consultas
      */
-    public ElegirTiendaFecha(PantallaInicio pantallaInicio, boolean modal, Connection conexionE) {
+    public ElegirTiendaFecha(PantallaInicio pantallaInicio, boolean modal, Connection conexionE,
+            InicioEmpleado inicioE, Consultas consultas) {
         super(pantallaInicio, modal);
         initComponents();
         this.pantallaInicio = pantallaInicio;
         this.conexionE = conexionE;
+        this.inicioE = inicioE;
+        this.consultas = consultas;
+        agregarElementosCombo();
+        this.consultas = consultas;
+    }
+
+    /**
+     * Se llenan los combo para elegir una opcion
+     */
+    private void agregarElementosCombo() {
+        InfoInicial infoI = new InfoInicial();
+
+        nombreTiendas = infoI.getCodigoTiendas(conexionE);
+        for (int i = 0; i < nombreTiendas.size(); i++) {
+            listaCodeTiendas.addItem(nombreTiendas.get(i));
+        }
+
+        nombreCodeEmpleados = infoI.getCodeEmpleados(conexionE);
+        for (int i = 0; i < nombreCodeEmpleados.size(); i++) {
+            listaCodeEmpleado.addItem(nombreCodeEmpleados.get(i));
+        }
     }
 
     /**
@@ -76,6 +115,9 @@ public class ElegirTiendaFecha extends javax.swing.JDialog {
         getContentPane().add(txtElegirFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 220, 40));
 
         dateChooser.setDateFormatString("yyyy-MMM-dd");
+        dateChooser.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        dateChooser.setMaxSelectableDate(new java.util.Date(253370790111000L));
+        dateChooser.setMinSelectableDate(new java.util.Date(-62135744289000L));
         getContentPane().add(dateChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 220, 60));
 
         txtCodigoEmpleado.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
@@ -85,6 +127,11 @@ public class ElegirTiendaFecha extends javax.swing.JDialog {
         getContentPane().add(txtCodigoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 240, 40));
 
         listaCodeEmpleado.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        listaCodeEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaCodeEmpleadoActionPerformed(evt);
+            }
+        });
         getContentPane().add(listaCodeEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 240, 60));
 
         fondoTienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,10 +142,62 @@ public class ElegirTiendaFecha extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        // TODO add your handling code here:
+        SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String codigoTienda = listaCodeTiendas.getSelectedItem().toString();
+        String codigoEmpleado = listaCodeEmpleado.getSelectedItem().toString();
+
+        try {
+            String date = dFormat.format(dateChooser.getDate());
+            Date dateActual = Date.valueOf(date);
+
+            if (consultas.contadorRegistros(conexionE) > 0) { //Hay registros
+                if (dateActual.compareTo(consultas.obtenerValorUltimoRegistro(conexionE)) > 0) {
+                    inicioE.setTxtFechaActual(date);
+                    inicioE.setTxtNombreTienda(codigoTienda);
+
+                    Registro nuevoR = new Registro(dateActual, codigoEmpleado, codigoTienda);
+                    InsertarData insertarD = new InsertarData();
+                    insertarD.crearRegistros(conexionE, nuevoR);
+
+                    this.setVisible(false);
+                    inicioE.setLocationRelativeTo(this);
+                    inicioE.setVisible(true);
+
+                    pantallaInicio.setVisible(false);                    
+                } else {
+                    JOptionPane.showMessageDialog(this, "Solo se puede ingresar una fecha posterior", "Alerta", JOptionPane.WARNING_MESSAGE);                    
+                }
+            } else {
+                if (dateActual.compareTo(consultas.obtenerValorUltimoPedido(conexionE))>0) {
+                    inicioE.setTxtFechaActual(date);
+                    inicioE.setTxtNombreTienda(codigoTienda);
+
+                    Registro nuevoR = new Registro(dateActual, codigoEmpleado, codigoTienda);
+                    InsertarData insertarD = new InsertarData();
+                    insertarD.crearRegistros(conexionE, nuevoR);
+
+                    this.setVisible(false);
+                    inicioE.setLocationRelativeTo(this);
+                    inicioE.setVisible(true);
+
+                    pantallaInicio.setVisible(false);
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Solo se puede ingresar una fecha posterior", "Alerta", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Fecha incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_okButtonActionPerformed
 
-    
+    private void listaCodeEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaCodeEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listaCodeEmpleadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser dateChooser;

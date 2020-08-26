@@ -16,8 +16,7 @@ public class Tiempo {
     private String codigoTienda2;
     private int tiempoTiendas;
 
-    public Tiempo(int idTiempo, String codigoTienda1, String codigoTienda2, int tiempoTiendas) {
-        this.idTiempo = idTiempo;
+    public Tiempo(String codigoTienda1, String codigoTienda2, int tiempoTiendas) {
         this.codigoTienda1 = codigoTienda1;
         this.codigoTienda2 = codigoTienda2;
         this.tiempoTiendas = tiempoTiendas;

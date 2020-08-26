@@ -15,19 +15,30 @@ public class Producto {
     private String fabricante;
     private String descripcion;
     private String codigo;
-    private String codigoTienda;
     private double precio;
-    private int cantidad;
-    private int garantia;
+    private String garantia;
 
-    public Producto(String nombre, String fabricante, String codigo, double precio,
-            int cantidad, String codigoTienda) {
+    /**
+     * Constructor archivo txt
+     * @param nombre
+     * @param fabricante
+     * @param codigo
+     * @param precio 
+     */
+    public Producto(String nombre, String fabricante, String codigo, double precio) {
         this.nombre = nombre;
         this.fabricante = fabricante;
         this.codigo = codigo;
         this.precio = precio;
-        this.cantidad = cantidad;
-        this.codigoTienda = codigoTienda;
+    }
+
+    public Producto(String nombre, String fabricante, String descripcion, String codigo, double precio, String garantia) {
+        this.nombre = nombre;
+        this.fabricante = fabricante;
+        this.descripcion = descripcion;
+        this.codigo = codigo;
+        this.precio = precio;
+        this.garantia = garantia;
     }
     
     public String getNombre() {
@@ -70,28 +81,12 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public int getGarantia() {
+    public String getGarantia() {
         return garantia;
     }
 
-    public void setGarantia(int garantia) {
+    public void setGarantia(String garantia) {
         this.garantia = garantia;
-    }
-
-    public String getCodigoTienda() {
-        return codigoTienda;
-    }
-
-    public void setCodigoTienda(String codigoTienda) {
-        this.codigoTienda = codigoTienda;
     }
 
     

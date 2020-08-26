@@ -5,22 +5,41 @@
  */
 package GUIEmpleado;
 
+import GUIConsultas.TiempoEntreTiendas;
+import ConexionSQL.InsertarData;
+import EntidadesTienda.Tienda;
+import Logica.Constantes;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author joel
  */
 public class AgregarTienda extends javax.swing.JDialog {
 
-    private Tienda tienda;
+    private TiendaFrame tiendaFrame;
+    private InsertarData insertarD;
+    private Connection conexion;
+    private Constantes constantes;
+    private InicioEmpleado inicioE;
     /**
      * Creates new form AgregarTienda
-     * @param tienda
+     * @param tiendaFrame
      * @param modal
+     * @param insertarD
+     * @param conexion
+     * @param inicioE
      */
-    public AgregarTienda(Tienda tienda, boolean modal) {
-        super(tienda, modal);
+    public AgregarTienda(TiendaFrame tiendaFrame, boolean modal,InsertarData insertarD,
+            Connection conexion, InicioEmpleado inicioE) {
+        super(tiendaFrame, modal);
         initComponents();
-        this.tienda = tienda;
+        this.tiendaFrame = tiendaFrame;
+        this.insertarD = insertarD;
+        this.conexion = conexion;
+        this.inicioE = inicioE;
     }
 
     /**
@@ -34,18 +53,20 @@ public class AgregarTienda extends javax.swing.JDialog {
 
         okButton = new javax.swing.JButton();
         nombreTextF = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        apellidoTextF = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        codigoTextF = new javax.swing.JTextField();
+        direcciontxt = new javax.swing.JLabel();
+        nombretxt = new javax.swing.JLabel();
+        direccionTextF = new javax.swing.JTextField();
+        telefono1txt = new javax.swing.JLabel();
         telefono1TextF = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        telefono2txt = new javax.swing.JLabel();
         telefono2TextF = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        codigotxt = new javax.swing.JLabel();
+        correotxt = new javax.swing.JLabel();
+        correoElectronicoTF = new javax.swing.JTextField();
+        horariotxt = new javax.swing.JLabel();
+        horarioTF = new javax.swing.JTextField();
+        fondoTienda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -60,74 +81,124 @@ public class AgregarTienda extends javax.swing.JDialog {
         });
         getContentPane().add(okButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 100, 100));
 
-        nombreTextF.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        nombreTextF.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         nombreTextF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         nombreTextF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreTextFActionPerformed(evt);
             }
         });
-        getContentPane().add(nombreTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 57, 164, 52));
+        nombreTextF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreTextFKeyTyped(evt);
+            }
+        });
+        getContentPane().add(nombreTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 57, 190, 52));
 
-        jTextField3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 216, 52));
+        codigoTextF.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        codigoTextF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        codigoTextF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                codigoTextFKeyTyped(evt);
+            }
+        });
+        getContentPane().add(codigoTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 216, 52));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Apellido");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 127, 164, 21));
+        direcciontxt.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        direcciontxt.setForeground(new java.awt.Color(0, 0, 0));
+        direcciontxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        direcciontxt.setText("Direccion");
+        getContentPane().add(direcciontxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 164, 21));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Nombre");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 24, 164, 21));
+        nombretxt.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        nombretxt.setForeground(new java.awt.Color(0, 0, 0));
+        nombretxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nombretxt.setText("Nombre");
+        getContentPane().add(nombretxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 164, 21));
 
-        apellidoTextF.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        apellidoTextF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(apellidoTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 155, 164, 52));
+        direccionTextF.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        direccionTextF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        direccionTextF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                direccionTextFKeyTyped(evt);
+            }
+        });
+        getContentPane().add(direccionTextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 155, 190, 52));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Telefono 1");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 237, 164, 21));
+        telefono1txt.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        telefono1txt.setForeground(new java.awt.Color(0, 0, 0));
+        telefono1txt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        telefono1txt.setText("Telefono 1");
+        getContentPane().add(telefono1txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 164, 21));
 
-        telefono1TextF.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        telefono1TextF.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         telefono1TextF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(telefono1TextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 276, 164, 52));
+        telefono1TextF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefono1TextFActionPerformed(evt);
+            }
+        });
+        telefono1TextF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefono1TextFKeyTyped(evt);
+            }
+        });
+        getContentPane().add(telefono1TextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 276, 190, 52));
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Telefono 2");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 354, 164, 21));
+        telefono2txt.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        telefono2txt.setForeground(new java.awt.Color(0, 0, 0));
+        telefono2txt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        telefono2txt.setText("Telefono 2");
+        getContentPane().add(telefono2txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 164, 21));
 
-        telefono2TextF.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        telefono2TextF.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         telefono2TextF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(telefono2TextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 393, 164, 52));
+        telefono2TextF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefono2TextFActionPerformed(evt);
+            }
+        });
+        telefono2TextF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                telefono2TextFKeyTyped(evt);
+            }
+        });
+        getContentPane().add(telefono2TextF, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 190, 52));
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Horario");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 216, 21));
+        codigotxt.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        codigotxt.setForeground(new java.awt.Color(0, 0, 0));
+        codigotxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        codigotxt.setText("Codigo");
+        getContentPane().add(codigotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 216, -1));
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Correo Electronico");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 34, -1, 21));
+        correotxt.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        correotxt.setForeground(new java.awt.Color(0, 0, 0));
+        correotxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        correotxt.setText("Correo Electronico");
+        getContentPane().add(correotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, 21));
 
-        jTextField10.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        getContentPane().add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 69, 209, 52));
+        correoElectronicoTF.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        correoElectronicoTF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        correoElectronicoTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                correoElectronicoTFKeyTyped(evt);
+            }
+        });
+        getContentPane().add(correoElectronicoTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 209, 52));
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tienda (400px).png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 500));
+        horariotxt.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        horariotxt.setForeground(new java.awt.Color(0, 0, 0));
+        horariotxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        horariotxt.setText("Horario");
+        getContentPane().add(horariotxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 216, -1));
+
+        horarioTF.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        horarioTF.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(horarioTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 216, 52));
+
+        fondoTienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fondoTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tienda (400px).png"))); // NOI18N
+        getContentPane().add(fondoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -137,28 +208,136 @@ public class AgregarTienda extends javax.swing.JDialog {
     }//GEN-LAST:event_nombreTextFActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        this.setVisible(false);
+        if (infoObligatoria()) {
+            JOptionPane.showMessageDialog(this,"No se han llenado los camplos obligatorio","ERROR", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            String nombreT = nombreTextF.getText().trim();
+            String dirrecion = direccionTextF.getText().trim();
+            String codigo = codigoTextF.getText().trim();
+            int telefono1 = Integer.parseInt(telefono1TextF.getText().trim());
+           
+            int telefono2 = 0;
+            if (!telefono2TextF.getText().equals("")) {
+                telefono2 = Integer.parseInt(telefono2TextF.getText().trim());
+            }
+            
+            String correoElectronico = correoElectronicoTF.getText().trim();
+            String horario = horarioTF.getText().trim();
+            
+            Tienda tiendaNueva = new Tienda(nombreT, dirrecion, codigo, telefono1, telefono2, correoElectronico, horario);
+            
+            
+            try {
+                //Añadir el nuevo tiempo
+                TiempoEntreTiendas tiempo = new TiempoEntreTiendas(inicioE, true, tiendaNueva.getCodigo(),conexion);
+                tiempo.agregarTiendasCombo();
+                
+                insertarD.crearTienda(conexion, tiendaNueva);
+                JOptionPane.showMessageDialog(this,"Se ha creado la tienda","Enhorabuena!", JOptionPane.INFORMATION_MESSAGE);
+                this.setVisible(false);
+                tiendaFrame.setVisible(false);
+                inicioE.setVisible(true);
+                
+                
+                tiempo.setLocationRelativeTo(this);
+                tiempo.setVisible(true);
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No se ha podido crear la tienda.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_okButtonActionPerformed
 
+    private void telefono1TextFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono1TextFKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && !(evt.getKeyCode()==KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se pueden ingresar numeros", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        if (telefono1TextF.getText().length()== constantes.LIMITE_NUMERO) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se pueden ingresar mas de 8 numeros","Error", JOptionPane.WARNING_MESSAGE);
+        } 
+    }//GEN-LAST:event_telefono1TextFKeyTyped
+
+    private void telefono2TextFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telefono2TextFKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && !(evt.getKeyCode()==KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se pueden ingresar numeros", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        if (telefono1TextF.getText().length()== constantes.LIMITE_NUMERO) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se pueden ingresar mas de 8 numeros","Error", JOptionPane.WARNING_MESSAGE);
+        } 
+    }//GEN-LAST:event_telefono2TextFKeyTyped
+
+    private void telefono1TextFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono1TextFActionPerformed
+        
+        
+    }//GEN-LAST:event_telefono1TextFActionPerformed
+
+    private void telefono2TextFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefono2TextFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefono2TextFActionPerformed
+
+    private void nombreTextFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTextFKeyTyped
+        if (nombreTextF.getText().length()== constantes.LIMITE_NOMBRE) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se pueden ingresar mas de 35 letras","Error", JOptionPane.WARNING_MESSAGE);
+        } 
+    }//GEN-LAST:event_nombreTextFKeyTyped
+
+    private void direccionTextFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_direccionTextFKeyTyped
+        if (direccionTextF.getText().length()== constantes.LIMITE_DIRECCION) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se pueden ingresar mas de 45 letras","Error", JOptionPane.WARNING_MESSAGE);
+        } 
+    }//GEN-LAST:event_direccionTextFKeyTyped
+
+    private void codigoTextFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codigoTextFKeyTyped
+        if (codigoTextF.getText().length()== constantes.LIMITE_DIRECCION) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se pueden ingresar mas de 35 letras","Error", JOptionPane.WARNING_MESSAGE);
+        } 
+    }//GEN-LAST:event_codigoTextFKeyTyped
+
+    private void correoElectronicoTFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoElectronicoTFKeyTyped
+        if (correoElectronicoTF.getText().length()== constantes.LIMITE_CORREO) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se pueden ingresar mas de 50 caracteres","Error", JOptionPane.WARNING_MESSAGE);
+        } 
+    }//GEN-LAST:event_correoElectronicoTFKeyTyped
+
+    private boolean infoObligatoria(){
+        return (nombreTextF.getText().trim().isEmpty()||direccionTextF.getText().trim().isEmpty()
+                ||telefono1TextF.getText().trim().isEmpty()||codigoTextF.getText().trim().isEmpty());       
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
     
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apellidoTextF;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField codigoTextF;
+    private javax.swing.JLabel codigotxt;
+    private javax.swing.JTextField correoElectronicoTF;
+    private javax.swing.JLabel correotxt;
+    private javax.swing.JTextField direccionTextF;
+    private javax.swing.JLabel direcciontxt;
+    private javax.swing.JLabel fondoTienda;
+    private javax.swing.JTextField horarioTF;
+    private javax.swing.JLabel horariotxt;
     private javax.swing.JTextField nombreTextF;
+    private javax.swing.JLabel nombretxt;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField telefono1TextF;
+    private javax.swing.JLabel telefono1txt;
     private javax.swing.JTextField telefono2TextF;
+    private javax.swing.JLabel telefono2txt;
     // End of variables declaration//GEN-END:variables
 }

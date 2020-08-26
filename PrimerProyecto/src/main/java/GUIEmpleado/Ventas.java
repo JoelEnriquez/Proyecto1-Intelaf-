@@ -6,6 +6,7 @@
 package GUIEmpleado;
 
 import ConexionSQL.Consultas;
+import ConexionSQL.InsertarData;
 import java.sql.Connection;
 
 /**
@@ -17,6 +18,7 @@ public class Ventas extends javax.swing.JFrame {
     private InicioEmpleado inicioE;
     private Connection conexion;
     private Consultas consultas;
+    private InsertarData insertD;
     
     /**
      * Creates new form Ventas
@@ -24,10 +26,11 @@ public class Ventas extends javax.swing.JFrame {
      * @param conexion
      * @param consultas
      */
-    public Ventas(InicioEmpleado inicioE, Connection conexion, Consultas consultas) {
+    public Ventas(InicioEmpleado inicioE, Connection conexion, Consultas consultas, InsertarData insertD) {
         this.inicioE = inicioE;
         this.conexion = conexion;
         this.consultas = consultas;
+        this.insertD = insertD;
         initComponents();
     }
 
@@ -40,24 +43,146 @@ public class Ventas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        realizarVentaButton = new javax.swing.JButton();
+        entregarPedidoButton = new javax.swing.JButton();
+        topProductosPorTiempo = new javax.swing.JButton();
+        comprasPorCliente = new javax.swing.JButton();
+        topProductosPorTienda = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
+        productosNoVendidosButton = new javax.swing.JButton();
+        panelReportestxt = new javax.swing.JPanel();
+        reportestxt = new javax.swing.JLabel();
+        cajaRegistradoraFondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 628, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        realizarVentaButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        realizarVentaButton.setText("Realizar Venta");
+        realizarVentaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                realizarVentaButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(realizarVentaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 200, 60));
+
+        entregarPedidoButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        entregarPedidoButton.setText("Entregar Pedido");
+        entregarPedidoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entregarPedidoButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(entregarPedidoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 220, 60));
+
+        topProductosPorTiempo.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        topProductosPorTiempo.setText("Top productos por tiempo");
+        topProductosPorTiempo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                topProductosPorTiempoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(topProductosPorTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 310, 60));
+
+        comprasPorCliente.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        comprasPorCliente.setText("Compras por cliente");
+        getContentPane().add(comprasPorCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 230, 60));
+
+        topProductosPorTienda.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        topProductosPorTienda.setText("Top productos por tienda");
+        topProductosPorTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                topProductosPorTiendaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(topProductosPorTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 310, 60));
+
+        closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cerrar (1).png"))); // NOI18N
+        closeButton.setText("jButton6");
+        closeButton.setContentAreaFilled(false);
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(closeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, 90, 90));
+
+        productosNoVendidosButton.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        productosNoVendidosButton.setText("Productos no vendidos");
+        productosNoVendidosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productosNoVendidosButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(productosNoVendidosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 290, 60));
+
+        reportestxt.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        reportestxt.setForeground(new java.awt.Color(0, 0, 0));
+        reportestxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        reportestxt.setText("Reportes");
+
+        javax.swing.GroupLayout panelReportestxtLayout = new javax.swing.GroupLayout(panelReportestxt);
+        panelReportestxt.setLayout(panelReportestxtLayout);
+        panelReportestxtLayout.setHorizontalGroup(
+            panelReportestxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelReportestxtLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(reportestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+        panelReportestxtLayout.setVerticalGroup(
+            panelReportestxtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(reportestxt, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
         );
+
+        getContentPane().add(panelReportestxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, 80));
+
+        cajaRegistradoraFondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cajaRegistradoraFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cajaRegistradora.png"))); // NOI18N
+        getContentPane().add(cajaRegistradoraFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void realizarVentaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realizarVentaButtonActionPerformed
+        RealizarVenta realizarV = new RealizarVenta(this, true, insertD, conexion, consultas,inicioE);
+        realizarV.setLocationRelativeTo(this);
+        realizarV.setVisible(true);
+    }//GEN-LAST:event_realizarVentaButtonActionPerformed
+
+    private void entregarPedidoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entregarPedidoButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_entregarPedidoButtonActionPerformed
+
+    private void topProductosPorTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topProductosPorTiempoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_topProductosPorTiempoActionPerformed
+
+    private void topProductosPorTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topProductosPorTiendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_topProductosPorTiendaActionPerformed
+
+    private void productosNoVendidosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productosNoVendidosButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_productosNoVendidosButtonActionPerformed
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        this.setVisible(false);
+        inicioE.setVisible(true);
+    }//GEN-LAST:event_closeButtonActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cajaRegistradoraFondo;
+    private javax.swing.JButton closeButton;
+    private javax.swing.JButton comprasPorCliente;
+    private javax.swing.JButton entregarPedidoButton;
+    private javax.swing.JPanel panelReportestxt;
+    private javax.swing.JButton productosNoVendidosButton;
+    private javax.swing.JButton realizarVentaButton;
+    private javax.swing.JLabel reportestxt;
+    private javax.swing.JButton topProductosPorTiempo;
+    private javax.swing.JButton topProductosPorTienda;
     // End of variables declaration//GEN-END:variables
 }

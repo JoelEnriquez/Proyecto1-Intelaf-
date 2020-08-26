@@ -16,13 +16,11 @@ public class Venta extends PeticionProducto{
     private int codigoVenta;
     private String codigoTienda;
 
-    public Venta(Date fecha, String NITCliente, double total,
-            int codigoVenta, String codigoTienda) {
+    public Venta(Date fecha, String NITCliente, double total,String codigoTienda) {
         super(fecha, NITCliente, total);
-        this.codigoVenta = codigoVenta;
-        this.codigoTienda = codigoTienda; 
+        this.codigoTienda = codigoTienda;
     }
-
+    
     public int getCodigoVenta() {
         return codigoVenta;
     }
@@ -38,8 +36,6 @@ public class Venta extends PeticionProducto{
     public void setCodigoTienda(String codigoTienda) {
         this.codigoTienda = codigoTienda;
     }
-    
-    
-    
+ 
     
 }

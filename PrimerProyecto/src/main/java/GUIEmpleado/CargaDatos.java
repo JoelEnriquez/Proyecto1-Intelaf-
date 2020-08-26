@@ -7,6 +7,7 @@ package GUIEmpleado;
 
 import ConexionSQL.Consultas;
 import ConexionSQL.InsertarData;
+import Main.PantallaInicio;
 import SalidaDatos.AnalizadorInputFile;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -28,6 +29,7 @@ public class CargaDatos extends javax.swing.JFrame {
     private ArrayList<String> filaDescartada;
     private Consultas consultas;
     private Connection conexion;
+    private PantallaInicio pInicio;
 
     /**
      * Creates new form CargaDatos
@@ -35,11 +37,13 @@ public class CargaDatos extends javax.swing.JFrame {
      * @param iEmpleado
      * @param consultas
      * @param conexion
+     * @param pInicio
      */
-    public CargaDatos(InicioEmpleado iEmpleado, Consultas consultas, Connection conexion) {
+    public CargaDatos(InicioEmpleado iEmpleado, Consultas consultas, Connection conexion, PantallaInicio pInicio) {
         this.iEmpleado = iEmpleado;
         this.consultas = consultas;
         this.conexion = conexion;
+        this.pInicio = pInicio;
         jfile = new JFileChooser();
         initComponents();
         desactivarComponentes();
@@ -246,12 +250,26 @@ public class CargaDatos extends javax.swing.JFrame {
 
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         InsertarData insertarD = new InsertarData();
+        
         try {
             insertarD.cargarDatos(conexion, filaAceptada);
             JOptionPane.showMessageDialog(this,"Se han cargado los datos con exito!",
                     "Enhorabuena", JOptionPane.INFORMATION_MESSAGE);
+            
+            desactivarComponentes();
+            selectFileButton.setEnabled(false);
+            
+            /**
+             * Volver a la pantalla de inicio con los datos ya cargados
+             */
+            pInicio.setLocationRelativeTo(this);
+            this.setVisible(false);
+            pInicio.setVisible(true);
+            pInicio.comprobarDatos();
+            
+            
         } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this,e.getMessage()+". No se han cargado los datos.",
+            JOptionPane.showMessageDialog(this,"No se han cargado los datos.",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_uploadButtonActionPerformed

@@ -30,7 +30,7 @@ public class Conexion {
         try {
             connection = DriverManager.getConnection(URL, user, password);
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se pudo cerrar la conexion", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -42,7 +42,7 @@ public class Conexion {
         try {
             connection.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se pudo cerrar la conexion", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

@@ -26,22 +26,28 @@ public class PantallaInicio extends javax.swing.JFrame {
     public PantallaInicio() {
         initComponents();
         iniciarConexionEmp();
+        iniciarConexionCliente();
         comprobarDatos();
     }
 
     private void iniciarConexionEmp() {
-        Conexion conexion = new Conexion("empleado", "intelafemp");
-        conexion.crearConexion();
-        conexionEmpleado = conexion.getConnection();
+        Conexion conexionE = new Conexion("empleado", "intelafemp");
+        conexionE.crearConexion();
+        conexionEmpleado = conexionE.getConnection();
 
         consultas = new Consultas(); //Se inicia el objeto consultas para comprobar datos luego
     }
+    
+    private void iniciarConexionCliente(){
+        Conexion conexionCli = new Conexion("clienteilaf", "clienteintelaf");
+        conexionCli.crearConexion();
+        conexionCliente = conexionCli.getConnection();
+    }
 
-    private void comprobarDatos() {
+    public void comprobarDatos() {
         if (consultas.contadorDatos(conexionEmpleado)>0) {
             existenciaDatos = true;
         }
-        System.out.println(existenciaDatos);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -98,12 +104,12 @@ public class PantallaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void vEmpleadosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vEmpleadosButtonActionPerformed
+        InicioEmpleado inicioE = new InicioEmpleado(this, existenciaDatos,consultas,conexionEmpleado);
         if (existenciaDatos) {
-            ElegirTiendaFecha elegirTF = new ElegirTiendaFecha(this, true, conexionEmpleado);
+            ElegirTiendaFecha elegirTF = new ElegirTiendaFecha(this, existenciaDatos, conexionEmpleado, inicioE, consultas);
             elegirTF.setLocationRelativeTo(this);
             elegirTF.setVisible(true);
         } else {
-            InicioEmpleado inicioE = new InicioEmpleado(this, existenciaDatos,consultas,conexionEmpleado);
             inicioE.setVisible(true);
             inicioE.setLocationRelativeTo(this);
             this.setVisible(false);

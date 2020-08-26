@@ -11,18 +11,18 @@ package EntidadesTienda;
  */
 public class Paquete {
     
-    protected String idProducto;
+    protected String codigoProducto;
     protected int cantidad;
     protected double total;
 
-    public Paquete(String idProducto, int cantidad, double total) {
-        this.idProducto = idProducto;
+    public Paquete(String codigoProducto, int cantidad, double total) {
+        this.codigoProducto = codigoProducto;
         this.cantidad = cantidad;
         this.total = total;
     }
 
-    public String getIdProducto() {
-        return idProducto;
+    public String getCodigoProducto() {
+        return codigoProducto;
     }
 
     public int getCantidad() {

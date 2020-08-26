@@ -11,22 +11,55 @@ package EntidadesPersona;
  */
 public class Empleado extends Persona {
     
-    private int codigo;
+    private String codigoEmpleado;
 
-    public Empleado(String nombre, String NIT, String correoElectronico,
-            String direccion, int DPI, int telefono, int codigo) {
-        super(nombre, NIT, correoElectronico, direccion, DPI, telefono);
-        this.codigo=codigo;
+    /**
+     * Constructor completo para crear empleados
+     * @param nombre
+     * @param apellido
+     * @param NIT
+     * @param correoElectronico
+     * @param direccion
+     * @param DPI
+     * @param telefono
+     * @param codigoEmpleado 
+     */
+    public Empleado(String nombre,String apellido, String NIT, String correoElectronico,
+            String direccion, String DPI, int telefono, String codigoEmpleado) {
+        super(nombre,apellido, NIT, correoElectronico, direccion, DPI, telefono);
+        this.codigoEmpleado=codigoEmpleado;
     }
     
-    public Empleado(String nombre, int codigo, int telefono, int DPI){
+    /**
+     * Constructor minimo para crear nuevos Empleados
+     * @param nombre
+     * @param correoElectronico
+     * @param direccion
+     * @param DPI
+     * @param telefono 
+     * @param codigoEmpleado 
+     */
+    public Empleado(String nombre, String correoElectronico,
+            String direccion, String DPI, int telefono, String codigoEmpleado) {
+        super(nombre, correoElectronico, direccion, DPI, telefono);
+        this.codigoEmpleado=codigoEmpleado;
+    }
+    
+    /**
+     * Constructor entrada txt
+     * @param nombre
+     * @param codigoEmpleado
+     * @param telefono
+     * @param DPI 
+     */
+    public Empleado(String nombre, String codigoEmpleado, int telefono, String DPI){
         super(nombre,telefono);
-        this.codigo = codigo;
-        super.DPI = DPI;
+        this.codigoEmpleado = codigoEmpleado;
+        this.DPI = DPI;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public String getCodigoEmpleado() {
+        return codigoEmpleado;
     }  
     
 }

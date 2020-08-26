@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package EntidadesTienda;
+package EntidadesPersona;
 
 import java.sql.Date;
 
@@ -13,28 +13,27 @@ import java.sql.Date;
  */
 public class Registro {
     
-    private int codigoEmpleado;
-    private String codigoTienda;
     private Date fechaRegistro;
+    private String codigoEmpleado;
+    private String codigoTienda;
 
-    public Registro(int codigoEmpleado, String codigoTienda, Date fechaRegistro) {
+    public Registro(Date fechaRegistro, String codigoEmpleado, String codigoTienda) {
+        this.fechaRegistro = fechaRegistro;
         this.codigoEmpleado = codigoEmpleado;
         this.codigoTienda = codigoTienda;
-        this.fechaRegistro = fechaRegistro;
     }
 
-    public int getCodigoEmpleado() {
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public String getCodigoEmpleado() {
         return codigoEmpleado;
     }
 
     public String getCodigoTienda() {
         return codigoTienda;
     }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
     
     
-   
 }
